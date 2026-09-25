@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagramで高校生活をもっとエモく、もっと繋がろう！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        insta: {
+                            yellow: '#FCAF45',
+                            orange: '#FF7A00',
+                            pink: '#E1306C',
+                            purple: '#C13584',
+                            deepPurple: '#833AB4',
+                            blue: '#405DE6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans JP"', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        glow: {
+                            '0%': { filter: 'drop-shadow(0 0 10px rgba(225, 48, 108, 0.5))' },
+                            '100%': { filter: 'drop-shadow(0 0 25px rgba(255, 122, 0, 0.8))' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Insta Gradient Text & Backgrounds */
+        .bg-insta-gradient {
+            background: linear-[#45deg], #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D, #FCAF45;
+            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+        }
+        
+        .bg-insta-mesh {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(131, 58, 180, 0.35) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(225, 48, 108, 0.35) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(254, 203, 100, 0.25) 0px, transparent 50%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FF7A00 0%, #E1306C 50%, #C13584 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-bright {
+            background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 50%, #E1306C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(225, 48, 108, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(225, 48, 108, 0.3);
+        }
+
+        .insta-border-ring {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 3px;
+            border-radius: 9999px;
+        }
+
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-insta-pink selection:text-white antialiased overflow-x-hidden bg-insta-mesh min-h-screen">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card bg-slate-950/70 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl bg-insta-gradient p-[2px] flex items-center justify-center transition-transform group-hover:scale-105">
+                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-2xl text-gradient-bright"></i>
+                    </div>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight text-white">Instagram <span class="text-xs px-2 py-0.5 rounded-full bg-insta-pink/20 text-insta-pink font-bold border border-insta-pink/30">for HS</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="#features" class="hover:text-insta-pink transition-colors">できること</a>
+                <a href="#usecases" class="hover:text-insta-pink transition-colors">あるある＆活用術</a>
+                <a href="#demo" class="hover:text-insta-pink transition-colors">体験デモ</a>
+                <a href="#faq" class="hover:text-insta-pink transition-colors">FAQ</a>
+            </nav>
+
+            <a href="#download" class="bg-insta-gradient text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-lg shadow-insta-pink/25 hover:shadow-insta-pink/50 hover:scale-105 active:scale-95 transition-all">
+                アプリを開く
+            </a>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 px-4 overflow-hidden">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-insta-pink/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-insta-orange/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-insta-pink/30 text-xs sm:text-sm font-medium mb-6 animate-pulse-slow">
+                <span class="w-2 h-2 rounded-full bg-insta-pink animate-ping"></span>
+                <span class="text-gradient font-bold">高校生のための公式ガイド</span>
+                <span class="text-slate-400">✨ アオハルを一生モノの思い出に</span>
+            </div>
+
+            <!-- Main Catchphrase -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.15] mb-6">
+                エモい瞬間、全部シェア。<br class="hidden sm:inline">
+                高校生活をもっと<span class="text-gradient-bright">エモく</span>、もっと<span class="text-gradient">繋がろう</span>。
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg mb-8 leading-relaxed">
+                部活、放課後カフェ、文化祭、日常のふとした笑顔まで——。<br class="hidden sm:inline">
+                Instagramなら、大切な瞬間を自分らしく可愛く残せて、友達の「今」ともすぐ繋がれる！
+            </p>
+
+            <!-- Hero CTA Buttons -->
+            <div id="download" class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+                <a href="https://instagram.com" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-full bg-insta-gradient text-white font-extrabold text-base shadow-xl shadow-insta-pink/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                    今すぐ無料ではじめる
+                </a>
+                <a href="#demo" class="w-full sm:w-auto px-8 py-4 rounded-full glass-card hover:bg-white/10 text-white font-bold text-base transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-play text-xs text-insta-pink"></i>
+                    デモを見てみる
+                </a>
+            </div>
+
+            <!-- Floating Preview Mockup Container -->
+            <div class="mt-14 relative max-w-xs sm:max-w-sm mx-auto animate-float">
+                <div class="insta-border-ring rounded-[2.5rem] shadow-2xl shadow-insta-purple/40">
+                    <div class="bg-slate-900 rounded-[2.3rem] p-3 border border-slate-800 text-left overflow-hidden relative">
+                        <!-- Mockup Top Bar -->
+                        <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10 px-2">
+                            <span class="text-xs font-bold tracking-wide text-slate-300">Instagram</span>
+                            <div class="flex items-center gap-3 text-sm">
+                                <i class="fa-regular fa-heart text-white"></i>
+                                <i class="fa-regular fa-paper-plane text-white"></i>
+                            </div>
+                        </div>
+                        <!-- Mock Stories Bar -->
+                        <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2 mb-2">
+                            <div class="flex flex-col items-center gap-1 min-w-[50px]">
+                                <div class="w-12 h-12 rounded-full p-[2px] bg-slate-700 relative">
+                                    <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-xs">あなた</div>
+                                    <span class="absolute bottom-0 right-0 w-4 h-4 bg-blue-500 rounded-full text-white text-[10px] flex items-center justify-center font-bold border-2 border-slate-900">+</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400">ストーリーズ</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 min-w-[50px]">
+                                <div class="w-12 h-12 rounded-full p-[2px] bg-insta-gradient">
+                                    <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-xs font-bold text-pink-400">Yui</div>
+                                </div>
+                                <span class="text-[10px] text-slate-300">yui_jk</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 min-w-[50px]">
+                                <div class="w-12 h-12 rounded-full p-[2px] bg-insta-gradient">
+                                    <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-xs font-bold text-orange-400">Ren</div>
+                                </div>
+                                <span class="text-[10px] text-slate-300">ren_soccer</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1 min-w-[50px]">
+                                <div class="w-12 h-12 rounded-full p-[2px] bg-emerald-500">
+                                    <div class="w-full h-full bg-slate-800 rounded-full flex items-center justify-center text-xs font-bold text-emerald-400">親しい</div>
+                                </div>
+                                <span class="text-[10px] text-slate-300">miku_08</span>
+                            </div>
+                        </div>
+                        <!-- Mock Post Card -->
+                        <div class="rounded-xl overflow-hidden bg-slate-800 border border-white/5">
+                            <div class="p-2.5 flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-full bg-insta-gradient p-[1.5px]">
+                                    <div class="w-full h-full bg-slate-900 rounded-full flex items-center justify-center text-[10px] font-bold">JK</div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-200">aoharu_life</span>
+                            </div>
+                            <div class="h-48 bg-gradient-to-tr from-purple-900 via-pink-800 to-orange-500 flex items-center justify-center relative p-4 text-center">
+                                <div class="absolute inset-0 bg-black/20"></div>
+                                <div class="relative z-10">
+                                    <p class="text-xs uppercase tracking-widest text-orange-200 font-bold mb-1">🎉 文化祭準備</p>
+                                    <p class="text-lg font-black text-white drop-shadow">放課後残り作業！<br>テンション最高🔥</p>
+                                </div>
+                            </div>
+                            <div class="p-2.5">
+                                <div class="flex justify-between items-center text-base mb-1">
+                                    <div class="flex gap-3">
+                                        <i class="fa-solid fa-heart text-red-500"></i>
+                                        <i class="fa-regular fa-comment text-slate-300"></i>
+                                        <i class="fa-regular fa-paper-plane text-slate-300"></i>
+                                    </div>
+                                    <i class="fa-regular fa-bookmark text-slate-300"></i>
+                                </div>
+                                <p class="text-[11px] font-bold text-slate-200">いいね！342件</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 px-4 max-w-6xl mx-auto relative">
+        <div class="text-center mb-16">
+            <h2 class="text-xs font-extrabold uppercase tracking-widest text-insta-pink mb-2">FEATURES</h2>
+            <p class="text-3xl sm:text-4xl font-black text-white">高校生が夢中になる4つの理由</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Feature 1 -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-2xl text-white mb-6 shadow-lg shadow-pink-500/30 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-clapperboard"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">フィード & リール</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    お気に入りの写真をおしゃれに保存。リール（Shorts動画）なら流行りの音源に乗せて一瞬でバズれるかも！？
+                </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-2xl text-white mb-6 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-circle-notch"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">ストーリーズ</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    24時間で自動消滅するから失敗を気にせず日常を気楽に投稿！アンケートや質問スタンプで盛り上がろう。
+                </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-2xl text-white mb-6 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">DM & グループ</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    LINE感覚で使えるチャット機能！リール動画を即共有したり、テスト勉強や遊びの計画もスムーズに。
+                </p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden group">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-2xl text-white mb-6 shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-user-group"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">親しい友達リスト</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    特定の人だけに公開できる緑枠ストーリーズ！本当の仲良しグループだけで本音トークを楽しめる。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="usecases" class="py-20 px-4 bg-slate-900/50 border-y border-white/5 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-extrabold uppercase tracking-widest text-insta-orange mb-2">USE CASES</h2>
+                <p class="text-3xl sm:text-4xl font-black text-white">高校生のあるある活用シーン</p>
+                <p class="text-slate-400 text-sm mt-2">みんなこんな風にアオハルをシェアしてるよ！</p>
+            </div>
+
+            <!-- Interactive Hashtag Filter -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10" id="tag-filters">
+                <button onclick="filterCards('all')" class="tag-btn active px-4 py-2 rounded-full text-xs font-bold transition-all bg-insta-gradient text-white">
+                    #すべて
+                </button>
+                <button onclick="filterCards('event')" class="tag-btn px-4 py-2 rounded-full text-xs font-bold transition-all glass-card hover:border-insta-pink text-slate-300">
+                    #学校行事
+                </button>
+                <button onclick="filterCards('club')" class="tag-btn px-4 py-2 rounded-full text-xs font-bold transition-all glass-card hover:border-insta-pink text-slate-300">
+                    #部活動
+                </button>
+                <button onclick="filterCards('trend')" class="tag-btn px-4 py-2 rounded-full text-xs font-bold transition-all glass-card hover:border-insta-pink text-slate-300">
+                    #トレンド＆勉強
+                </button>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="usecase-cards">
+                <!-- Card 1 -->
+                <div class="usecase-card event glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-tr from-red-600 via-pink-600 to-orange-400 relative p-6 flex flex-col justify-end">
+                        <span class="absolute top-4 left-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white">
+                            #体育祭 #文化祭
+                        </span>
+                        <i class="fa-solid fa-camera-retro text-5xl text-white/20 absolute top-4 right-4 group-hover:scale-125 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-1">メガホン＆ネームボード盛り投稿</h3>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            行事の日はクラスTシャツや手作りグッズで映え写真を撮影！ストーリーズ連投でイベントの興奮をそのままシェア。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="usecase-card club glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-500 relative p-6 flex flex-col justify-end">
+                        <span class="absolute top-4 left-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white">
+                            #部活の日常 #青春
+                        </span>
+                        <i class="fa-solid fa-trophy text-5xl text-white/20 absolute top-4 right-4 group-hover:scale-125 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-1">大会の記録やカウントダウン</h3>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            「引退まであと○日！」のカウントダウンスタンプや、きつい練習終わりの達成感あふれる写真をみんなで共有。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="usecase-card trend glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-48 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 relative p-6 flex flex-col justify-end">
+                        <span class="absolute top-4 left-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white">
+                            #勉強垢 #カフェ巡り
+                        </span>
+                        <i class="fa-solid fa-book-open text-5xl text-white/20 absolute top-4 right-4 group-hover:scale-125 transition-transform"></i>
+                        <h3 class="text-xl font-bold text-white mb-1">放課後カフェ＆テスト勉強モチベ</h3>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            新作スイーツの情報検索や、勉強アカウント（#勉強垢）でノートやタイマーを載せて全国の高校生と高め合う！
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-20 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-xs font-extrabold uppercase tracking-widest text-insta-pink mb-2">INTERACTIVE DEMO</h2>
+            <p class="text-3xl sm:text-4xl font-black text-white">ストーリー体験デモ</p>
+            <p class="text-slate-400 text-sm mt-2">タップして高校生のリアルな日常投稿を切り替えよう！</p>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 md:p-10 border border-insta-pink/20 max-w-sm mx-auto shadow-2xl">
+            <!-- Story Header -->
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full p-[2px] bg-insta-gradient" id="demo-avatar-ring">
+                        <img id="demo-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" class="w-full h-full rounded-full object-cover" alt="User Avatar">
+                    </div>
+                    <div>
+                        <p id="demo-username" class="text-xs font-bold text-white">yui_04_jk</p>
+                        <p id="demo-time" class="text-[10px] text-slate-400">2時間前</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="demo-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-insta-pink/20 text-insta-pink border border-insta-pink/30">通常投稿</span>
+                </div>
+            </div>
+
+            <!-- Story Screen Canvas / Display -->
+            <div id="story-display" onclick="nextStory()" class="h-80 rounded-2xl bg-gradient-to-br from-pink-600 via-purple-700 to-indigo-800 p-6 flex flex-col justify-between relative overflow-hidden cursor-pointer select-none group">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+
+                <!-- Story Progress Bar -->
+                <div class="flex gap-1 relative z-10" id="story-bars">
+                    <div class="h-1 flex-1 bg-white rounded-full"></div>
+                    <div class="h-1 flex-1 bg-white/40 rounded-full"></div>
+                    <div class="h-1 flex-1 bg-white/40 rounded-full"></div>
+                </div>
+
+                <!-- Story Text Overlay -->
+                <div class="relative z-10 my-auto text-center">
+                    <span id="demo-tag" class="bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white inline-block mb-3">
+                        📍 渋谷カフェ
+                    </span>
+                    <h4 id="demo-caption" class="text-2xl font-black text-white leading-tight drop-shadow-md">
+                        放課後タピオカ🧋<br>テストお疲れ様会！！
+                    </h4>
+                </div>
+
+                <!-- Interactive Reaction Stamp -->
+                <div class="relative z-10 flex justify-center">
+                    <div id="demo-stamp" class="bg-white/20 backdrop-blur-md rounded-xl p-3 text-center border border-white/30 text-xs text-white font-bold animate-bounce">
+                        🔥 テンション爆上がり中！
+                    </div>
+                </div>
+
+                <!-- Click hint -->
+                <div class="absolute bottom-2 right-2 text-[10px] text-white/60 z-10 flex items-center gap-1">
+                    タップで次へ <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-slate-400 mt-4">
+                💡 画面をタップすると次のストーリーに切り替わります
+            </p>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-xs font-extrabold uppercase tracking-widest text-insta-yellow mb-2">FAQ</h2>
+            <p class="text-3xl sm:text-4xl font-black text-white">よくある疑問・不安にお答え！</p>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden transition-all">
+                <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center font-bold text-slate-200 hover:text-white">
+                    <span>Q. 安全に使うにはどう設定すればいい？（鍵垢について）</span>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div class="hidden p-5 pt-0 text-sm text-slate-400 border-t border-white/5 leading-relaxed">
+                    アカウントを作成後、「設定」→「プライバシー設定」から<strong class="text-insta-pink">「非公開アカウント（鍵垢）」</strong>をオンにすれば OK！許可した友達だけがあなたの投稿を見られるようになるので安心です。
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden transition-all">
+                <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center font-bold text-slate-200 hover:text-white">
+                    <span>Q. 知り合いにアカウントがバレたくない時は？</span>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div class="hidden p-5 pt-0 text-sm text-slate-400 border-t border-white/5 leading-relaxed">
+                    連絡先の同期をオフにし、「似たアカウントのすすめ」の表示をオフに設定できます。趣味用（勉強垢・イラスト垢など）のサブアカウントも簡単に作成・切り替えが可能です。
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden transition-all">
+                <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex justify-between items-center font-bold text-slate-200 hover:text-white">
+                    <span>Q. 写真のセンスに自信がなくても大丈夫？</span>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div class="hidden p-5 pt-0 text-sm text-slate-400 border-t border-white/5 leading-relaxed">
+                    もちろんです！Instagramには豊富なおしゃれフィルターや可愛いエフェクトがたくさん用意されています。スタンプをペタペタ貼るだけでも自分らしい素敵なストーリーズが作れます。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/10 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-md bg-insta-gradient p-[1px]">
+                    <div class="w-full h-full bg-slate-950 rounded-[5px] flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-xs text-gradient-bright"></i>
+                    </div>
+                </div>
+                <span class="font-bold text-slate-300 text-sm">Instagram</span>
+            </div>
+            <p>© 2026 High School Promotion Landing Page. Designed for Youth & Fun.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Story Simulator Logic
+        const stories = [
+            {
+                username: "yui_04_jk",
+                time: "2時間前",
+                tag: "📍 渋谷カフェ",
+                caption: "放課後タピオカ🧋<br>テストお疲れ様会！！",
+                stamp: "🔥 テンション爆上がり中！",
+                bg: "from-pink-600 via-purple-700 to-indigo-800",
+                badge: "通常投稿",
+                badgeBg: "bg-insta-pink/20 text-insta-pink border-insta-pink/30",
+                ringBg: "bg-insta-gradient"
+            },
+            {
+                username: "ren_soccer_10",
+                time: "30分前",
+                tag: "⚽️ 部活帰り",
+                caption: "夕焼けヤバい🌅<br>明日も練習頑張ろうぜ！",
+                stamp: "💪 エモい一枚撮れた",
+                bg: "from-orange-500 via-rose-600 to-purple-800",
+                badge: "通常投稿",
+                badgeBg: "bg-insta-pink/20 text-insta-pink border-insta-pink/30",
+                ringBg: "bg-insta-gradient"
+            },
+            {
+                username: "miku_secret",
+                time: "5分前",
+                tag: "🔒 内緒の秘密",
+                caption: "文化祭のダンス衣装<br>チラ見せ...🤫✨",
+                stamp: "💚 親しい友達限定",
+                bg: "from-emerald-600 via-teal-700 to-slate-900",
+                badge: "親しい友達",
+                badgeBg: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+                ringBg: "bg-emerald-500"
+            }
+        ];
+
+        let currentStoryIndex = 0;
+
+        function nextStory() {
+            currentStoryIndex = (currentStoryIndex + 1) % stories.length;
+            const story = stories[currentStoryIndex];
+
+            // DOM Updates
+            document.getElementById('demo-username').textContent = story.username;
+            document.getElementById('demo-time').textContent = story.time;
+            document.getElementById('demo-tag').innerHTML = story.tag;
+            document.getElementById('demo-caption').innerHTML = story.caption;
+            document.getElementById('demo-stamp').innerHTML = story.stamp;
+
+            const badgeEl = document.getElementById('demo-badge');
+            badgeEl.textContent = story.badge;
+            badgeEl.className = `px-2 py-0.5 rounded-full text-[10px] font-bold border ${story.badgeBg}`;
+
+            const ringEl = document.getElementById('demo-avatar-ring');
+            ringEl.className = `w-10 h-10 rounded-full p-[2px] ${story.ringBg}`;
+
+            const display = document.getElementById('story-display');
+            display.className = `h-80 rounded-2xl bg-gradient-to-br ${story.bg} p-6 flex flex-col justify-between relative overflow-hidden cursor-pointer select-none group`;
+
+            // Progress bar update
+            const bars = document.getElementById('story-bars').children;
+            for (let i = 0; i < bars.length; i++) {
+                if (i <= currentStoryIndex) {
+                    bars[i].className = "h-1 flex-1 bg-white rounded-full transition-all duration-300";
+                } else {
+                    bars[i].className = "h-1 flex-1 bg-white/40 rounded-full transition-all duration-300";
+                }
+            }
+        }
+
+        // Tag Filter Logic
+        function filterCards(category) {
+            const cards = document.querySelectorAll('.usecase-card');
+            const buttons = document.querySelectorAll('.tag-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-insta-gradient', 'text-white');
+                btn.classList.add('glass-card', 'text-slate-300');
+            });
+
+            event.currentTarget.classList.remove('glass-card', 'text-slate-300');
+            event.currentTarget.classList.add('bg-insta-gradient', 'text-white');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // FAQ Accordion Logic
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html>
